@@ -1,18 +1,12 @@
-/**
- * @author Lorenzo Cadamuro / http://lorenzocadamuro.com
- */
-
-import {mat4} from 'gl-matrix'
-import stats from '~js/helpers/stats'
-import gui from '~js/helpers/gui'
-import Texture from '~js/helpers/Texture'
-import {regl, play} from '~js/renderer'
-import camera from '~js/camera'
-import cube, {Types as CubeTypes, Faces as CubeFaces, Masks as CubeMasks} from '~js/components/cube'
-import content, {Types as ContentTypes} from '~js/components/content'
-import reflection from '~js/components/reflection'
-
-import '~css/main.css'
+import { mat4 } from "gl-matrix"
+import stats from "~js/helpers/stats"
+import gui from "~js/helpers/gui"
+import Texture from "~js/helpers/Texture"
+import { regl, play } from "~js/renderer"
+import camera from "~js/camera"
+import cube, { Types as CubeTypes, Faces as CubeFaces, Masks as CubeMasks } from "~js/components/cube"
+import content, { Types as ContentTypes } from "~js/components/content"
+import reflection from "~js/components/reflection"
 
 const CONFIG = {
   cameraX: 0,
@@ -25,17 +19,17 @@ const CONFIG = {
   velocity: 0.009,
 }
 
-gui.get((gui) => {
-  const folder = gui.addFolder('Main')
+gui.get(gui => {
+  const folder = gui.addFolder("Main")
 
-  folder.add(CONFIG, 'cameraX', -20, 20).step(0.1)
-  folder.add(CONFIG, 'cameraY', -20, 20).step(0.1)
-  folder.add(CONFIG, 'cameraZ', -20, 20).step(0.1)
-  folder.add(CONFIG, 'rotation', -5, 5).step(0.0001)
-  folder.add(CONFIG, 'rotateX', 0, 10).step(0.1)
-  folder.add(CONFIG, 'rotateY', 0, 10).step(0.1)
-  folder.add(CONFIG, 'rotateZ', 0, 10).step(0.1)
-  folder.add(CONFIG, 'velocity', 0, 0.05).step(0.0001)
+  folder.add(CONFIG, "cameraX", -20, 20).step(0.1)
+  folder.add(CONFIG, "cameraY", -20, 20).step(0.1)
+  folder.add(CONFIG, "cameraZ", -20, 20).step(0.1)
+  folder.add(CONFIG, "rotation", -5, 5).step(0.0001)
+  folder.add(CONFIG, "rotateX", 0, 10).step(0.1)
+  folder.add(CONFIG, "rotateY", 0, 10).step(0.1)
+  folder.add(CONFIG, "rotateZ", 0, 10).step(0.1)
+  folder.add(CONFIG, "velocity", 0, 0.05).step(0.0001)
 })
 
 /**
@@ -51,36 +45,36 @@ const reflectionFbo = regl.framebufferCube(1024)
  */
 const textures = [
   {
-    texture: Texture(regl, 'logo.png'),
+    texture: Texture(regl, "logo.png"),
     typeId: ContentTypes.RAINBOW,
     maskId: CubeMasks.M1,
   },
   {
-    texture: Texture(regl, 'logo.png'),
+    texture: Texture(regl, "logo.png"),
     typeId: ContentTypes.BLUE,
     maskId: CubeMasks.M2,
   },
   {
-    texture: Texture(regl, 'logo.png'),
+    texture: Texture(regl, "logo.png"),
     typeId: ContentTypes.RED,
     maskId: CubeMasks.M3,
   },
   {
-    texture: Texture(regl, 'text-1.png'),
+    texture: Texture(regl, "text-1.png"),
     typeId: ContentTypes.BLUE,
     maskId: CubeMasks.M4,
   },
   {
-    texture: Texture(regl, 'text-2.png'),
+    texture: Texture(regl, "text-2.png"),
     typeId: ContentTypes.RED,
     maskId: CubeMasks.M5,
   },
 ]
 
-const animate = ({viewportWidth, viewportHeight, tick}) => {
+const animate = ({ viewportWidth, viewportHeight, tick }) => {
   stats.begin()
 
-  const {rotation, rotateX, rotateY, rotateZ, velocity, cameraX, cameraY, cameraZ} = CONFIG
+  const { rotation, rotateX, rotateY, rotateZ, velocity, cameraX, cameraY, cameraZ } = CONFIG
 
   /**
    * Resize Fbos
@@ -153,7 +147,7 @@ const animate = ({viewportWidth, viewportHeight, tick}) => {
     reflectionFbo,
     cameraConfig,
     rotationMatrix,
-    texture: contentFbo
+    texture: contentFbo,
   })
 
   camera(cameraConfig, () => {

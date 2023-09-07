@@ -1,17 +1,13 @@
-/**
- * @author Lorenzo Cadamuro / http://lorenzocadamuro.com
- */
-
-import Stats from 'stats.js'
+import Stats from "stats.js"
 
 let stats
 
 const init = () => {
   stats = new Stats()
 
-  stats.showPanel(0)
+  // stats.showPanel(0)
 
-  document.body.appendChild(stats.dom)
+  // document.body.appendChild(stats.dom)
 }
 
 devMode && init()

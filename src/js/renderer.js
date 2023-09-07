@@ -1,11 +1,7 @@
-/**
- * @author Lorenzo Cadamuro / http://lorenzocadamuro.com
- */
-
-import Regl from 'regl'
+import Regl from "regl"
 
 export const regl = Regl({
-  container: document.querySelector('.content'),
+  container: document.querySelector(".content"),
   attributes: {
     antialias: true,
     alpha: false,
@@ -14,7 +10,7 @@ export const regl = Regl({
 
 let tick
 
-export const play = (action) => {
+export const play = action => {
   if (!tick) {
     tick = regl.frame(action)
   }
